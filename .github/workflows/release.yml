@@ -2,8 +2,11 @@ name: Create Relaese
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
