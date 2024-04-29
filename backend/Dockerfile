@@ -7,14 +7,12 @@ COPY go.sum ./
 
 RUN go mod download
 
-COPY . .
+COPY . ./
 
-RUN go build -o main
+RUN CGO_ENABLED=0 go build -a --trimpath --installsuffix cgo --ldflags="-s" -o main
 
 FROM alpine:latest
 
 COPY --from=builder /app/main ./
-
-EXPOSE 8080
 
 CMD [ "./main" ]
