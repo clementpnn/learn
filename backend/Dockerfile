@@ -7,7 +7,7 @@ COPY ./backend/go.sum ./
 
 RUN go mod download
 
-COPY . ./
+COPY ./backend ./
 
 RUN CGO_ENABLED=0 go build -a --trimpath --installsuffix cgo --ldflags="-s" -o main
 
